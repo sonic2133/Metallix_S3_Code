@@ -9,9 +9,10 @@ local sonicFrame = objectsFolder:WaitForChild("Dr_Robotnik")
 local spriteImage = sonicFrame:WaitForChild("Sprite")
 
 --// IDs
-local newImageId = "rbxassetid://117138329545618" -- Sonic sprite replacement
+local newImageId = "rbxassetid://71446073928716" -- Sonic sprite replacement
 local achievementImage = "rbxassetid://120981529367335" -- Achievement popup image
 local soundId = "rbxassetid://7337298420" -- Sound to play
+local chara10ImageId = "rbxassetid://75297950063613" -- CharaIcons["10"] replacement
 
 --// Replace the Sonic sprite image
 spriteImage.Image = newImageId
@@ -25,8 +26,35 @@ sound:Play()
 
 --// Send achievement notification
 StarterGui:SetCore("SendNotification", {
-    Title = "Achievement Unlocked!";
-    Text = "You have Achieved Metallix";
-    Icon = achievementImage;
-    Duration = 5;
+	Title = "Achievement Unlocked!";
+	Text = "You have Achieved Metallix";
+	Icon = achievementImage;
+	Duration = 5;
 })
+
+--// ===== ADD-ON: Replace CharaIcons["10"] image =====
+
+local charaIcons = player.PlayerGui
+	:WaitForChild("CustomLevelSelect")
+	:WaitForChild("Backdrop")
+	:WaitForChild("Screen")
+	:WaitForChild("SelectedLevel")
+	:WaitForChild("CharaIcons")
+
+local function updateChara10(icon)
+	if icon:IsA("ImageLabel") or icon:IsA("ImageButton") then
+		icon.Image = chara10ImageId
+	end
+end
+
+--// If "10" already exists
+if charaIcons:FindFirstChild("10") then
+	updateChara10(charaIcons["10"])
+else
+	--// Wait for it to appear later
+	charaIcons.ChildAdded:Connect(function(child)
+		if child.Name == "10" then
+			updateChara10(child)
+		end
+	end)
+end
