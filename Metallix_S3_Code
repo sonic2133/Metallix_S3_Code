@@ -9,9 +9,9 @@ local sonicFrame = objectsFolder:WaitForChild("Dr_Robotnik")
 local spriteImage = sonicFrame:WaitForChild("Sprite")
 
 --// IDs
-local newImageId = "rbxassetid://107342046540754" -- Sonic sprite replacement
+local newImageId = "rbxassetid://117138329545618" -- Sonic sprite replacement
 local achievementImage = "rbxassetid://120981529367335" -- Achievement popup image
-local soundId = "rbxassetid://7351757458" -- Sound to play
+local soundId = "rbxassetid://7337298420" -- Sound to play
 
 --// Replace the Sonic sprite image
 spriteImage.Image = newImageId
