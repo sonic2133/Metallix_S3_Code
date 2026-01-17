@@ -1,0 +1,32 @@
+--// Get services
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local StarterGui = game:GetService("StarterGui")
+local Players = game:GetService("Players")
+
+local player = Players.LocalPlayer
+local objectsFolder = ReplicatedStorage:WaitForChild("Objects")
+local sonicFrame = objectsFolder:WaitForChild("Dr_Robotnik")
+local spriteImage = sonicFrame:WaitForChild("Sprite")
+
+--// IDs
+local newImageId = "rbxassetid://107342046540754" -- Sonic sprite replacement
+local achievementImage = "rbxassetid://120981529367335" -- Achievement popup image
+local soundId = "rbxassetid://7351757458" -- Sound to play
+
+--// Replace the Sonic sprite image
+spriteImage.Image = newImageId
+
+--// Play sound
+local sound = Instance.new("Sound")
+sound.SoundId = soundId
+sound.Volume = 1
+sound.Parent = player:WaitForChild("PlayerGui")
+sound:Play()
+
+--// Send achievement notification
+StarterGui:SetCore("SendNotification", {
+    Title = "Achievement Unlocked!";
+    Text = "You have Achieved Metallix";
+    Icon = achievementImage;
+    Duration = 5;
+})
